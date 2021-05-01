@@ -7,9 +7,6 @@ const getFootTitle = (str ) => {
     return str.substring(0,11)+"...";
 }
 const Card = (props) => {
-    console.log(props.cur.title);
-    const targetLoc = `location.href='${props.cur.url}';`;
-    console.log('targetLoc', targetLoc);
     return (
         <div className="card" onClick={()=>{
             window.open(props.cur.url, '_blank').focus();
