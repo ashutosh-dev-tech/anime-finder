@@ -42,12 +42,7 @@ const Search = (props) =>{
             </button>
         </div>
         <Container result={result.slice(0, displayCount)}/>
-        {
-        (displayCount!==result.length)?
-        (   
-            <Load loadMoreHandler={loadMoreHandler}/>
-        ):""
-        }
+        {(displayCount!==result.length && <Load loadMoreHandler={loadMoreHandler}/>)}
     </>
     );
 }
