@@ -1,6 +1,7 @@
-import React, {useState, useRef} from 'react';
+import React, {useRef} from 'react';
 import Container from '../container/Container';
 import Load from '../load/Load';
+import {useSelector, useDispatch} from 'react-redux';
 import './search.css';
 
 //API function
@@ -15,22 +16,22 @@ const getResults = async (query) =>{
 }
 
 const Search = (props) =>{
-    const inputBoxRef = useRef();
-    
-    const [result, setResult] = useState([]);
 
-    const [displayCount, setDisplayCount] = useState(0);
+    const inputBoxRef = useRef();
+    const result = useSelector((state)=> state.result);
+    const displayCount = useSelector((state)=> state.displayCount);
+    const dispatch = useDispatch();
 
     const GoBtnHandler = async ()=>{
         const finalRes = await getResults(inputBoxRef.current.value);
-        setResult(finalRes);
-        setDisplayCount(Math.min(11, finalRes.length));
+        dispatch({type: 'setResult', result: finalRes});
+        dispatch({type: 'setDisplayCount', displayCount: Math.min(11, finalRes.length)});
     }
 
     const loadMoreHandler = ()=>{
         let curDisCount = displayCount;
         curDisCount=Math.min(curDisCount+11, result.length);
-        setDisplayCount(curDisCount);
+        dispatch({type: 'setDisplayCount', displayCount: curDisCount});
     }
 
     return (
