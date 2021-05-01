@@ -7,7 +7,6 @@ const getResults = async (query) =>{
     let apiRequest = `https://api.jikan.moe/v3/search/anime?q=${query}`;
     const res = await fetch(apiRequest)
     const jsonRes = await res.json();
-    console.log(jsonRes.results);
     return jsonRes.results;
 }
 
