@@ -3,6 +3,7 @@ import Container from '../container/Container';
 import Load from '../load/Load';
 import {useSelector, useDispatch} from 'react-redux';
 import './search.css';
+import actionsTypes from '../../store/actions';
 
 //API function
 const getResults = async (query) =>{
@@ -24,14 +25,14 @@ const Search = (props) =>{
 
     const GoBtnHandler = async ()=>{
         const finalRes = await getResults(inputBoxRef.current.value);
-        dispatch({type: 'setResult', result: finalRes});
-        dispatch({type: 'setDisplayCount', displayCount: Math.min(11, finalRes.length)});
+        dispatch({type: actionsTypes.SET_RESULT, result: finalRes});
+        dispatch({type: actionsTypes.SET_DISPLAYCOUNT, displayCount: Math.min(11, finalRes.length)});
     }
 
     const loadMoreHandler = ()=>{
         let curDisCount = displayCount;
         curDisCount=Math.min(curDisCount+11, result.length);
-        dispatch({type: 'setDisplayCount', displayCount: curDisCount});
+        dispatch({type: actionsTypes.SET_DISPLAYCOUNT, displayCount: curDisCount});
     }
 
     return (

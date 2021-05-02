@@ -1,3 +1,5 @@
+import actionTypes from './actions';
+
 const initialSate = {
     result: [],
     displayCount: 0
@@ -5,19 +7,19 @@ const initialSate = {
 const reducer = (prevState = initialSate, action) => {
     
     switch(action.type){
-        case 'setDisplayCount':{
+        case actionTypes.SET_DISPLAYCOUNT: {
             return {
                 ...prevState,
                 displayCount: action.displayCount
             }
         }
-        case 'setResult':{
+        case actionTypes.SET_RESULT: {
             return {
                 ...prevState,
                 result: [...action.result]
             }
         }
-        default:{
+        default: {
             return prevState;
         }
     }
