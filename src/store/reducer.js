@@ -14,7 +14,7 @@ const reducer = (prevState = initialSate, action) => {
         case 'setResult':{
             return {
                 ...prevState,
-                result: action.result
+                result: [...action.result]
             }
         }
         default:{
